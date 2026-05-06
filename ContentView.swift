@@ -1,8 +1,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var Event = ""
+    @State var startTime: Int
+    @State var endTime: Int
     var body: some View {
         VStack {
+            
             HStack{
                 ZStack{
                     Rectangle()
@@ -36,7 +40,7 @@ struct ContentView: View {
                             Rectangle()
                                 .stroke(.yellow, lineWidth: 5)
                         )
-                    Text("Tues")
+                    Text("Tue")
                         .font(.title)
                         .foregroundStyle(.white)
                 }
