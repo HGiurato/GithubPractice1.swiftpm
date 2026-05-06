@@ -1,12 +1,42 @@
 import SwiftUI
 
+
 struct ContentView: View {
-    @State var Event = ""
-    @State var startTime: Int
-    @State var endTime: Int
+    @State var event: String = ""
+    @State var startTime: Int = 0
+    @State var endTime: Int = 0
     var body: some View {
         VStack {
-            
+            //Events of the Day
+            VStack{
+                ZStack{
+                    Rectangle()
+                        .fill(Color.purple)
+                        .frame(width: 500, height: 175, alignment: .center)
+                        .overlay(
+                            Rectangle()
+                                .stroke(.yellow, lineWidth: 5)
+                        )
+                    
+                }
+                VStack{
+                    ZStack{
+                        Rectangle()
+                            .fill(Color.purple)
+                            .frame(width: 500, height: 175, alignment: .center)
+                            .overlay(
+                                Rectangle()
+                                    .stroke(.yellow, lineWidth: 5)
+                            )
+                        Text(event.isEmpty ? "No Events For Today" : event)
+                            .font(.title)
+                            .foregroundStyle(.white)
+                        
+                    }
+                    .padding()
+                }
+            }
+            //Calendar Squares
             HStack{
                 ZStack{
                     Rectangle()
