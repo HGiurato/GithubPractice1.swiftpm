@@ -1,6 +1,8 @@
 import SwiftUI
 
+
 struct ContentView: View {
+    @State var event: String = ""
     @State var startTime: Int = 0
     @State var endTime: Int = 0
     @State var event = ""
@@ -8,7 +10,48 @@ struct ContentView: View {
     @State var editing = "no"
     var body: some View {
         VStack {
-            
+            //Internal Clock Dates Code
+            VStack{
+                DatePicker(
+                    "Select Date",
+                    selection: $selectedDate,
+                    displayedComponents: [.date]
+                )
+                .datePickerStyle(.compact)
+                .padding()
+                
+                Text("Selected Date: \(selectedDate.formatted(date: .long, time: .omitted))")
+            }
+            //Events of the Day
+            VStack{
+                ZStack{
+                    Rectangle()
+                        .fill(Color.purple)
+                        .frame(width: 500, height: 175, alignment: .center)
+                        .overlay(
+                            Rectangle()
+                                .stroke(.yellow, lineWidth: 5)
+                        )
+                    
+                }
+                VStack{
+                    ZStack{
+                        Rectangle()
+                            .fill(Color.purple)
+                            .frame(width: 500, height: 175, alignment: .center)
+                            .overlay(
+                                Rectangle()
+                                    .stroke(.yellow, lineWidth: 5)
+                            )
+                        Text(event.isEmpty ? "No Events For Today" : event)
+                            .font(.title)
+                            .foregroundStyle(.white)
+                        
+                    }
+                    .padding()
+                }
+            }
+            //Calendar Squares
             HStack{
                 ZStack{
                     Rectangle()
