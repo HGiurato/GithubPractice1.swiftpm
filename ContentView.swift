@@ -5,8 +5,21 @@ struct ContentView: View {
     @State var event: String = ""
     @State var startTime: Int = 0
     @State var endTime: Int = 0
+    @State private var selectedDate: Date = Date()
     var body: some View {
         VStack {
+            //Internal Clock Dates Code
+            VStack{
+                DatePicker(
+                    "Select Date",
+                    selection: $selectedDate,
+                    displayedComponents: [.date]
+                )
+                .datePickerStyle(.compact)
+                .padding()
+                
+                Text("Selected Date: \(selectedDate.formatted(date: .long, time: .omitted))")
+            }
             //Events of the Day
             VStack{
                 ZStack{
