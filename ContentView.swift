@@ -9,19 +9,43 @@ struct ContentView: View {
     @State var editing = "no"
     @State private var selectedDate = Date()
     var body: some View {
-      //  ScrollView{
-            VStack {
-                //Internal Clock Dates Code
-                DatePicker(
-                                    "Select Date",
-                                    selection: $selectedDate,
-                                    displayedComponents: [.date]
-                                )
-                                .datePickerStyle(.compact)
-                                
-                                // 3. Keep or add the display Text
-                                Text("Selected Date: \(selectedDate.formatted(date: .long, time: .omitted))")
-                                    .foregroundColor(.gray)
+        //  ScrollView{
+        VStack(spacing: 30) {
+            //Internal Clock Dates Code
+            VStack{
+                ZStack{
+                    Rectangle()
+                        .fill(Color.purple)
+                        .frame(width: 275, height: 50, alignment: .center)
+                        .overlay(
+                            Rectangle()
+                                .stroke(.yellow, lineWidth: 5)
+                        )
+                    DatePicker(
+                        "Select Date  ->",
+                        selection: $selectedDate,
+                        displayedComponents: [.date]
+                    )
+                    .datePickerStyle(.compact)
+                    .frame(width: 250)
+                    .foregroundStyle(.white)
+                }
+                VStack{
+                    ZStack{
+                        // 3. Keep or add the display Text
+                        Rectangle()
+                            .fill(Color.purple)
+                            .frame(width: 275, height: 50, alignment: .center)
+                            .overlay(
+                                Rectangle()
+                                    .stroke(.yellow, lineWidth: 5)
+                            )
+                        Text("Selected Date: \(selectedDate.formatted(date: .long, time: .omitted))")
+                            .foregroundColor(.white)
+                    }
+                }
+                
+                
                 //Events of the Day
                 VStack{
                     ZStack{
@@ -32,7 +56,9 @@ struct ContentView: View {
                                 Rectangle()
                                     .stroke(.yellow, lineWidth: 5)
                             )
-                        
+                        Text(event.isEmpty ? "No Events For Today" : event)
+                            .font(.title)
+                            .foregroundStyle(.white)
                     }
                     VStack{
                         ZStack{
@@ -241,9 +267,11 @@ struct ContentView: View {
                         .padding()
                 }
             }
+            
             .frame(minWidth: 0, idealWidth: 0, maxWidth: .infinity, minHeight: 0, idealHeight: 0, maxHeight: .infinity, alignment: .center)
             .background(.white)
         }
     }
     
-//}
+    
+}
